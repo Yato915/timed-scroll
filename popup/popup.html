@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <title>定时下滑</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <header class="app-header">
+      <img class="app-logo" src="../icons/icon32.png" alt="" width="28" height="28" />
+      <h1 class="app-title">定时下滑</h1>
+      <span class="version" id="version-badge">v0.1</span>
+    </header>
+
+    <p class="page-chip" id="page-context" title="">
+      <span class="page-dot" aria-hidden="true"></span>
+      <span class="page-name" id="page-title">正在读取当前页面…</span>
+    </p>
+
+    <main>
+      <section class="status" id="status-card" aria-live="polite">
+        <div class="status-row">
+          <div class="status-info">
+            <p class="status-label" id="status-badge">未开始</p>
+            <p class="status-detail" id="stat-text">设置好间隔后点开始</p>
+          </div>
+          <p class="status-count">
+            <span id="scroll-count">0</span>
+            <span class="status-count-unit">次</span>
+          </p>
+        </div>
+        <div class="status-track" aria-hidden="true">
+          <span id="progress-bar"></span>
+        </div>
+      </section>
+
+      <section class="settings">
+        <div class="field">
+          <div class="field-head">
+            <label class="field-label" for="interval">滚动间隔</label>
+            <span class="field-note">0.5 秒 – 60 分钟</span>
+          </div>
+          <div class="field-row">
+            <div class="input-group">
+              <input
+                id="interval"
+                class="input"
+                type="number"
+                min="0.5"
+                max="3600"
+                step="any"
+                value="2"
+                inputmode="decimal"
+                aria-label="滚动间隔数值"
+              />
+              <select id="interval-unit" class="input-unit" aria-label="滚动间隔单位">
+                <option value="seconds">秒</option>
+                <option value="minutes">分钟</option>
+              </select>
+            </div>
+            <div class="stepper">
+              <button type="button" id="interval-minus" class="step-button" aria-label="减少间隔">−</button>
+              <button type="button" id="interval-plus" class="step-button" aria-label="增加间隔">+</button>
+            </div>
+          </div>
+          <div class="chips" role="group" aria-label="间隔预设">
+            <button type="button" data-interval="1">1 秒</button>
+            <button type="button" data-interval="2">2 秒</button>
+            <button type="button" data-interval="3">3 秒</button>
+            <button type="button" data-interval="5">5 秒</button>
+            <button type="button" data-interval="10">10 秒</button>
+            <button type="button" data-interval="60">1 分钟</button>
+          </div>
+        </div>
+
+        <div class="field">
+          <div class="field-head">
+            <span class="field-label">每次滚动</span>
+          </div>
+          <div class="segment" role="radiogroup" aria-label="每次滚动距离">
+            <button type="button" data-distance="half" aria-pressed="false">半屏</button>
+            <button type="button" data-distance="full" aria-pressed="true">一屏</button>
+            <button type="button" data-distance="pixels" aria-pressed="false">自定义</button>
+          </div>
+          <div class="input-group" id="pixels-field" hidden>
+            <input
+              id="pixels"
+              class="input"
+              type="number"
+              min="80"
+              max="4000"
+              step="20"
+              value="600"
+              inputmode="numeric"
+              aria-label="每次滚动像素"
+            />
+            <span class="input-unit">像素</span>
+          </div>
+        </div>
+
+        <div class="switch-list">
+          <label class="switch">
+            <input id="smooth" type="checkbox" checked />
+            <span class="switch-track" aria-hidden="true"><span class="switch-thumb"></span></span>
+            <span class="switch-text">平滑滚动</span>
+          </label>
+          <label class="switch">
+            <input id="stop-at-bottom" type="checkbox" checked />
+            <span class="switch-track" aria-hidden="true"><span class="switch-thumb"></span></span>
+            <span class="switch-text">到底后停止</span>
+          </label>
+        </div>
+      </section>
+
+      <p class="notice" id="message" hidden></p>
+
+      <button class="primary" id="toggle" type="button">开始下滑</button>
+      <p class="shortcut" id="shortcut-hint">快捷键读取中…</p>
+    </main>
+
+    <script src="../shared/settings.js"></script>
+    <script src="popup.js"></script>
+  </body>
+</html>
