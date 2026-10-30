@@ -1,5 +1,7 @@
 # 定时下滑
 
+[English](README.en.md)
+
 按固定间隔自动向下滚动当前网页的浏览器扩展，适合读长文、文档和信息流。支持 Edge 和 Chrome（Manifest V3）。
 
 ## 功能
